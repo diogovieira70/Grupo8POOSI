@@ -19,7 +19,6 @@ public class Medico {
      * getters e setters
      * @return
      */
-
     public String getNome() {
         return nome;
     }
@@ -31,7 +30,8 @@ public class Medico {
     @Override
     public String toString() {
         return "Medico{" +
-                "nome='" + nome + '\'' + ", especialidade='" + especialidade + '\'' + '}';
+                "nome='" + nome + '\'' +
+                ", especialidade='" + especialidade + '\'' +
+                '}';
     }
 }
-

@@ -13,8 +13,8 @@ import java.util.Map;
 public class GerirConsultasExames {
     private List<Exame> exames;
     private List<Consulta> consultas;
-    private ArrayList<Medico> medicos;
-    private ArrayList<Paciente> pacientes;
+    private List<Medico> medicos;
+    private List<Paciente> pacientes;
     private Map<Medico, List<LocalDateTime>> horariosDisponiveis;
 
     private static GerirConsultasExames gestor;
@@ -51,16 +51,16 @@ public class GerirConsultasExames {
     }
 
     /**
-     * Registra um médico.
+     * Regista um médico.
      * 
-     * @param medico O médico a ser registrado.
+     * @param medico O médico a ser registado.
      */
-    public void registrarMedico(Medico medico) {
+    public void registarMedico(Medico medico) {
         if (medico == null) {
             throw new IllegalArgumentException("Médico não pode ser nulo.");
         }
         if (medicos.contains(medico)) {
-            throw new IllegalArgumentException("Médico já registrado.");
+            throw new IllegalArgumentException("Médico já registado.");
         }
         this.medicos.add(medico);
         inicializarHorariosDisponiveis(medico);
@@ -75,7 +75,7 @@ public class GerirConsultasExames {
         List<LocalDateTime> horarios = new ArrayList<>();
         // Supondo que há horários disponíveis entre 8h e 17h de segunda a sexta
         for (int dia = 1; dia <= 30; dia++) {
-            for (int hora = 8; hora < 17; hora++) {
+            for (int hora = 8; hora < 17; hora++) { // Corrigido para 17h, não 26h
                 horarios.add(LocalDateTime.of(2024, 6, dia, hora, 0));
             }
         }
@@ -83,11 +83,11 @@ public class GerirConsultasExames {
     }
 
     /**
-     * Registra um paciente.
+     * Regista um paciente.
      * 
-     * @param paciente O paciente a ser registrado.
+     * @param paciente O paciente a ser registado.
      */
-    public void registrarPaciente(Paciente paciente) {
+    public void registarPaciente(Paciente paciente) {
         if (paciente == null) {
             throw new IllegalArgumentException("Paciente não pode ser nulo.");
         }
@@ -96,7 +96,7 @@ public class GerirConsultasExames {
         }
         for (Paciente p : pacientes) {
             if (p.getId().equals(paciente.getId())) {
-                throw new IllegalArgumentException("Paciente com este ID já registrado.");
+                throw new IllegalArgumentException("Paciente com este ID já registado.");
             }
         }
         this.pacientes.add(paciente);
@@ -114,10 +114,10 @@ public class GerirConsultasExames {
             throw new IllegalArgumentException("Dados inválidos para agendar consulta.");
         }
         if (!medicos.contains(medico)) {
-            throw new IllegalArgumentException("Médico não registrado.");
+            throw new IllegalArgumentException("Médico não registado.");
         }
         if (!pacientes.contains(paciente)) {
-            throw new IllegalArgumentException("Paciente não registrado.");
+            throw new IllegalArgumentException("Paciente não registado.");
         }
         if (dataHora.isBefore(LocalDateTime.now())) {
             throw new IllegalArgumentException("Data e hora da consulta não podem ser no passado.");
@@ -144,10 +144,10 @@ public class GerirConsultasExames {
             throw new IllegalArgumentException("Dados inválidos para agendar exame.");
         }
         if (!medicos.contains(medico)) {
-            throw new IllegalArgumentException("Médico não registrado.");
+            throw new IllegalArgumentException("Médico não registado.");
         }
         if (!pacientes.contains(paciente)) {
-            throw new IllegalArgumentException("Paciente não registrado.");
+            throw new IllegalArgumentException("Paciente não registado.");
         }
         if (dataHora.isBefore(LocalDateTime.now())) {
             throw new IllegalArgumentException("Data e hora do exame não podem ser no passado.");
@@ -172,14 +172,14 @@ public class GerirConsultasExames {
     }
 
     /**
-     * Registra os resultados de um exame.
+     * Regista os resultados de um exame.
      * 
      * @param exame       O exame.
      * @param observacoes As observações do exame (máximo de 30 caracteres).
      */
-    public void registrarResultadosExame(Exame exame, String observacoes) {
+    public void registarResultadosExame(Exame exame, String observacoes) {
         if (exame == null || observacoes == null || observacoes.isEmpty()) {
-            throw new IllegalArgumentException("Dados inválidos para registrar resultados do exame.");
+            throw new IllegalArgumentException("Dados inválidos para registar resultados do exame.");
         }
         if (observacoes.length() > 30) {
             throw new IllegalArgumentException("Observações não podem ter mais que 30 caracteres.");

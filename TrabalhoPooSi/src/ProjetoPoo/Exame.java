@@ -62,7 +62,7 @@ public class Exame {
     public Paciente getPaciente() {
         return paciente;
     }
-    
+
     /**
      * Obtém as observações do exame.
      *
@@ -101,4 +101,3 @@ public class Exame {
                 '}';
     }
 }
-

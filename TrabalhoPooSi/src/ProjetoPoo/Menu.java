@@ -29,14 +29,14 @@ public class Menu {
         int opcao = -1;
         while (opcao != 0) {
             System.out.println("Menu da Aplicação:");
-            System.out.println("1. Registrar Médico");
-            System.out.println("2. Registrar Paciente");
+            System.out.println("1. Registar Médico");
+            System.out.println("2. Registar Paciente");
             System.out.println("3. Agendar Consulta");
             System.out.println("4. Agendar Exame");
-            System.out.println("5. Registrar Resultados de Exame");
-            System.out.println("6. Ver Histórico de Consultas");
+            System.out.println("5. Registar Resultados de Exame");
+            System.out.println("6. Ver Histórico de Consultas por Nome");
             System.out.println("7. Ver Histórico de Consultas por Data e Hora");
-            System.out.println("8. Ver Histórico de Exames");
+            System.out.println("8. Ver Histórico de Exames por Nome");
             System.out.println("9. Ver Histórico de Exames por Tipo");
             System.out.println("10. Ver Histórico de Exames por Data e Hora");
             System.out.println("0. Sair");
@@ -52,10 +52,10 @@ public class Menu {
 
             switch (opcao) {
                 case 1:
-                    registrarMedico();
+                    registarMedico();
                     break;
                 case 2:
-                    registrarPaciente();
+                    registarPaciente();
                     break;
                 case 3:
                     agendarConsulta();
@@ -64,7 +64,7 @@ public class Menu {
                     agendarExame();
                     break;
                 case 5:
-                    registrarResultadosExame();
+                    registarResultadosExame();
                     break;
                 case 6:
                     verHistoricoConsultas();
@@ -92,9 +92,9 @@ public class Menu {
     }
 
     /**
-     * Registra um médico.
+     * Regista um médico.
      */
-    private static void registrarMedico() {
+    private static void registarMedico() {
         System.out.print("Nome do médico: ");
         String nome = scanner.nextLine();
         if (!nome.matches("[a-zA-Z\\s]+")) {
@@ -108,14 +108,14 @@ public class Menu {
             return;
         }
         Medico medico = new Medico(nome, especialidade);
-        gestor.registrarMedico(medico);
-        System.out.println("Médico registrado com sucesso!");
+        gestor.registarMedico(medico);
+        System.out.println("Médico registado com sucesso!");
     }
 
     /**
-     * Registra um paciente.
+     * Regista um paciente.
      */
-    private static void registrarPaciente() {
+    private static void registarPaciente() {
         System.out.print("ID do paciente (apenas números): ");
         String id = scanner.nextLine();
         if (!id.matches("\\d+")) {
@@ -135,8 +135,8 @@ public class Menu {
         try {
             Date dataNascimento = sdf.parse(dataNascimentoStr);
             Paciente paciente = new Paciente(id, nome, dataNascimento);
-            gestor.registrarPaciente(paciente);
-            System.out.println("Paciente registrado com sucesso!");
+            gestor.registarPaciente(paciente);
+            System.out.println("Paciente registado com sucesso!");
         } catch (ParseException e) {
             System.out.println("Formato de data inválido. Use 'dd-MM-yyyy'.");
         }
@@ -241,9 +241,9 @@ public class Menu {
     }
 
     /**
-     * Registra os resultados de um exame.
+     * Regista os resultados de um exame.
      */
-    private static void registrarResultadosExame() {
+    private static void registarResultadosExame() {
         System.out.print("Nome do paciente: ");
         String nomePaciente = scanner.nextLine();
         if (!nomePaciente.matches("[a-zA-Z\\s]+")) {
@@ -260,8 +260,8 @@ public class Menu {
                 if (exame != null) {
                     System.out.print("Resultado do Exame (até 30 caracteres): ");
                     String resultado = scanner.nextLine();
-                    gestor.registrarResultadosExame(exame, resultado);
-                    System.out.println("Resultado registrado com sucesso!");
+                    gestor.registarResultadosExame(exame, resultado);
+                    System.out.println("Resultado registado com sucesso!");
                 } else {
                     System.out.println("Exame não encontrado.");
                 }

@@ -44,7 +44,6 @@ public class Paciente {
      * getters e setters
      * @return
      */
-
     public String getId() {
         return id;
     }
